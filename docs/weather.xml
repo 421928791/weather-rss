@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='utf-8'?>
+<rss version="2.0"><channel><title>天气通知</title><link>https://421928791.github.io/weather-rss/weather.xml</link><description>通过 RSS 订阅的天气更新</description><lastBuildDate>Mon, 09 Jun 2025 11:56:48 GMT</lastBuildDate><language>zh-cn</language><item><title>今日天气更新</title><description>臺北市：
+18:00–06:00：多雲時晴，降雨 10% ，27～31°C
+
+新北市：
+18:00–06:00：多雲時晴，降雨 10% ，27～30°C
+
+可能降雨乡镇：
+无
+
+台风警报：无
+
+热带气旋：无</description><pubDate>Mon, 09 Jun 2025 11:56:48 GMT</pubDate><guid>https://421928791.github.io/weather-rss/weather.xml</guid></item></channel></rss>
