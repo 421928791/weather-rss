@@ -37,7 +37,7 @@ jobs:
         CWA_API_KEY: ${{ secrets.CWA_API_KEY }}
         BARK_KEY:   ${{ secrets.BARK_KEY }}      # 可选
         RSS_LINK:  'https://eliu-lotso.github.io/weather-rss/weather.xml'
-        DEBUG_API_RAW: '0'
+        DEBUG_API_RAW: '1'
       run: |
         python main.py
 
