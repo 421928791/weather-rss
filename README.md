@@ -1,16 +1,54 @@
-# weather-rss
-Weather RSS 天气通知
+# 🌤️  Taiwan Weather RSS
 
-使用 GitHub Pages + RSS + BARK + Slack 实时推送台北/新北天气预报与降雨乡镇信息。
+> 自动抓取中央气象署开放资料。生成 RSS 给 GitHub Pages 发布，并支持 Bark 推送至手机。
 
-⸻
+## 目录结构
 
-:page_facing_up: 项目简介
+```
+weather-rss/
+├— main.py                    # 入口：生成今日天气 RSS
+├— services/
+│   └— weather_service.py     # 接口解析，已统一 Asia/Taipei 时区
+├— notifier.py                # 写 RSS 和 Bark 推送
+├— docs/weather.xml           # 被 GitHub Pages 发布的 RSS
+├— .github/workflows/
+│   └— weather.yml            # GitHub Actions 定时任务
+├— requirements.txt           # 依赖列表
+└— .gitignore                 # 忽略 .env / __pycache__ / *.pyc
+```
 
-本项目通过台湾中央气象署开放资料 API，自动获取：
-	1.	台北市 & 新北市当日 24 小时天气预报（6 小时分段）；
-	2.	全台可能降雨的乡镇列表；
-	3.	台风警报与热带气旋状态；
+## 快速开始
 
-并将结果以 RSS 格式生成到 docs/weather.xml，通过 GitHub Pages 发布；
-同时使用 BARK 推送手机通知，并可选用 Slack RSS 机器人订阅频道消息。
+### 1. GitHub Secrets 配置
+
+| Secret Key    | 用途                                                               |
+| ------------- | ---------------------------------------------------------------- |
+| `CWA_API_KEY` | 中央气象署 OpenData 授权码 (必填)                                          |
+| `BARK_KEY`    | Bark 推送的 device key (可选)                                         |
+| `RSS_LINK`    | RSS URL，如 `https://<username>.github.io/weather-rss/weather.xml` |
+
+> `RSS_LINK` 作为 RSS `<link>` 内容，便于转换 GitHub Pages 路径
+
+### 2. GitHub Actions 定时解析
+
+
+## 功能概览
+
+| 功能        | 说明                                    |
+| --------- | ------------------------------------- |
+| 县市 36h 预报 | 00-06 / 06-18 / 18-06 每6小时段天气，含降雨率和温度 |
+| 全台降雨乡镇    | 为 PoP > 0% 的乡镇列表                      |
+| 台风警报      | 含 "頝风" 关键词的特报项                        |
+| 热带气旋      |             
+| 七日预报      | 台北/新北 简单月/日+天气+温度预报                   |
+| RSS 输出    | 写入 docs/weather.xml                   |
+| Bark 推送   | 选填，推送同步内容                             |
+
+
+## 时区处理
+
+* GitHub Actions 为 **UTC 时区**，输出 RSS 时间使用 `datetime.utcnow()`
+* 与 API 相关时间系，都统一使用 `Asia/Taipei` 解析和转换
+
+
+> 有任何问题或优化建议欢迎 Issue / PR
