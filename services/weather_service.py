@@ -53,7 +53,7 @@ def get_today_segments(city_name: str, data: dict) -> list[str]:
         tmin = mint.get("time", [{}])[i].get("parameter", {}).get("parameterName", "")
         tmax = maxt.get("time", [{}])[i].get("parameter", {}).get("parameterName", "")
         segments.append(
-            f"{city_name} {st:('%H:%M')}–{ed:('%H:%M')}: "
+            f"{city_name} {st:%H:%M}–{ed:%H:%M}: "
             f"{desc}，降雨 {rain}% ，气温 {tmin}～{tmax}°C"
         )
     return segments
