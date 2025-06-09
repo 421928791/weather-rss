@@ -1,14 +1,14 @@
 import os
 import requests
 from dateutil import parser
-from datetime import datetime
+from datetime import datetime, timedelta 
+from zoneinfo import ZoneInfo
+TPE = ZoneInfo("Asia/Taipei")
 
-# 从环境变量读取中央气象署 API Key
 CWA_API_KEY = os.getenv("CWA_API_KEY")
 if not CWA_API_KEY:
     raise RuntimeError("环境变量 CWA_API_KEY 未设置，请先 export CWA_API_KEY=你的API_KEY")
 
-# API 端点配置
 ENDPOINTS = {
     "county_36h":    "https://opendata.cwa.gov.tw/api/v1/rest/datastore/F-C0032-001",
     "township_3h":   "https://opendata.cwa.gov.tw/api/v1/rest/datastore/F-D0047-091",
@@ -40,20 +40,20 @@ def get_today_segments(city_name: str, data: dict) -> list[str]:
     pop = elems.get("PoP", {})
     mint = elems.get("MinT", {})
     maxt = elems.get("MaxT", {})
-    today = datetime.now().date()
+    today = datetime.now(TPE).date()
     segments = []
 
     for i, seg in enumerate(wx.get("time", [])):
-        st = parser.isoparse(seg.get("startTime"))
+        st = parser.isoparse(seg["startTime"]).astimezone(TPE)
         if st.date() != today:
             continue
-        ed = parser.isoparse(seg.get("endTime"))
+        ed = parser.isoparse(seg["endTime"]).astimezone(TPE) 
         desc = seg.get("parameter", {}).get("parameterName", "")
         rain = pop.get("time", [{}])[i].get("parameter", {}).get("parameterName", "")
         tmin = mint.get("time", [{}])[i].get("parameter", {}).get("parameterName", "")
         tmax = maxt.get("time", [{}])[i].get("parameter", {}).get("parameterName", "")
         segments.append(
-            f"{city_name} {st.strftime('%H:%M')}–{ed.strftime('%H:%M')}: "
+            f"{city_name} {st:('%H:%M')}–{ed:('%H:%M')}: "
             f"{desc}，降雨 {rain}% ，气温 {tmin}～{tmax}°C"
         )
     return segments
@@ -157,7 +157,11 @@ def get_weekly_summary() -> tuple[str, str]:
             min_times = elems.get("MinT", {}).get("time", [])
             max_times = elems.get("MaxT", {}).get("time", [])
             for i in range(len(wx_times)):
-                date = wx_times[i].get("startTime", "")[:10]
+                date = (
+                    (parser.isoparse(wx_times[i]["startTime"]) + timedelta(hours=0))
+                    .astimezone() 
+                    .strftime("%m/%d")
+                )
                 desc = wx_times[i].get("parameter", {}).get("parameterName", "")
                 tmin = min_times[i].get("parameter", {}).get("parameterName", "")
                 tmax = max_times[i].get("parameter", {}).get("parameterName", "")
