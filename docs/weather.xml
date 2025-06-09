@@ -1,9 +1,9 @@
 <?xml version='1.0' encoding='utf-8'?>
-<rss version="2.0"><channel><title>天气通知</title><link>https://&lt;你的用户名&gt;.github.io/weather-rss/weather.xml</link><description>通过 RSS 订阅的天气更新</description><lastBuildDate>Mon, 09 Jun 2025 18:28:29 GMT</lastBuildDate><language>zh-cn</language><item><title>今日天气更新 (2025-06-09 18:28)</title><description>── 臺北市 今日预报 ──
+<rss version="2.0"><channel><title>天气通知</title><link>https://&lt;你的用户名&gt;.github.io/weather-rss/weather.xml</link><description>通过 RSS 订阅的天气更新</description><lastBuildDate>Mon, 09 Jun 2025 18:32:23 GMT</lastBuildDate><language>zh-cn</language><item><title>今日天气更新 (2025-06-09 18:32)</title><description>── 臺北市 今日预报 ──
 ── 新北市 今日预报 ──
 ── 全台可能降雨乡镇 ──
 无可能降雨乡镇
 ── 台风相关警报 ──
 无台风警报
 ── 当前热带气旋 ──
-无活跃热带气旋</description><pubDate>Mon, 09 Jun 2025 18:28:29 GMT</pubDate><guid isPermaLink="false">weather-20250609182829</guid></item></channel></rss>
+无活跃热带气旋</description><pubDate>Mon, 09 Jun 2025 18:32:23 GMT</pubDate><guid isPermaLink="false">weather-20250609183223</guid></item></channel></rss>
