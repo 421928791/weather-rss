@@ -1,0 +1,48 @@
+name: Update Weather RSS
+
+on:
+  workflow_dispatch:          
+  schedule:
+    - cron: '0 18 * * *'
+
+permissions:
+  contents: write              
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+      with:
+        ref: main           
+
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.13' 
+    - name: Install deps
+      run: |
+        python -m pip install --upgrade pip
+        if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+
+    - name: Run weather script
+      env:
+        CWA_API_KEY: ${{ secrets.CWA_API_KEY }}
+        BARK_KEY:   ${{ secrets.BARK_KEY }}      # 可选
+        RSS_LINK:  'https://eliu-lotso.github.io/weather-rss/weather.xml'
+        DEBUG_API_RAW: '0'
+      run: |
+        python main.py
+
+    # 5) 如有变动则提交并推送
+    - name: Commit & push if changed
+      run: |
+        git config user.name  github-actions
+        git config user.email github-actions@users.noreply.github.com
+        if [ -n "$(git status --porcelain docs/weather.xml)" ]; then
+          git add docs/weather.xml
+          git commit -m "Auto update weather RSS $(date -u '+%F %T')"
+          git push
+        else
+          echo "No RSS change → skip commit."
+        fi
