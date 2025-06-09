@@ -14,4 +14,3 @@ Weather RSS 天气通知
 
 并将结果以 RSS 格式生成到 docs/weather.xml，通过 GitHub Pages 发布；
 同时使用 BARK 推送手机通知，并可选用 Slack RSS 机器人订阅频道消息。
-⸻
