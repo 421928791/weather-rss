@@ -40,13 +40,11 @@ def get_today_segments(city_name: str, data: dict) -> list[str]:
     pop = elems.get("PoP", {})
     mint = elems.get("MinT", {})
     maxt = elems.get("MaxT", {})
-    #today = datetime.now(TPE).date()
+ 
     segments = []
 
     for i, seg in enumerate(wx.get("time", [])):
         st = parser.isoparse(seg["startTime"]).astimezone(TPE)
-        #if st.date() != today:
-            #continue
         ed = parser.isoparse(seg["endTime"]).astimezone(TPE) 
         today = st.date()
         if st.date() != today:
