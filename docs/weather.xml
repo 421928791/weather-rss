@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<rss version="2.0"><channel><title>天气通知</title><link>https://&lt;你的用户名&gt;.github.io/weather-rss/weather.xml</link><description>通过 RSS 订阅的天气更新</description><lastBuildDate>Tue, 10 Jun 2025 01:09:14 GMT</lastBuildDate><language>zh-cn</language><item><title>今日天气更新（台北时间 2025-06-10 09:09）</title><description>── 臺北市 今日预报 ──
+<rss version="2.0"><channel><title>天气通知</title><link>https://&lt;你的用户名&gt;.github.io/weather-rss/weather.xml</link><description>通过 RSS 订阅的天气更新</description><lastBuildDate>Tue, 10 Jun 2025 02:02:39 GMT</lastBuildDate><language>zh-cn</language><item><title>今日天气更新（台北时间 2025-06-10 10:02）</title><description>── 臺北市 今日预报 ──
 臺北市 14:00–02:00: 晴時多雲，降雨 10% ，气温 27～36°C
 臺北市 02:00–14:00: 晴時多雲，降雨 10% ，气温 27～32°C
 臺北市 14:00–02:00: 晴時多雲，降雨 20% ，气温 27～35°C
@@ -12,4 +12,4 @@
 ── 台风相关警报 ──
 无台风警报
 ── 当前热带气旋 ──
-无活跃热带气旋</description><pubDate>Tue, 10 Jun 2025 01:09:14 GMT</pubDate><guid isPermaLink="false">weather-20250610010914</guid></item></channel></rss>
+无活跃热带气旋</description><pubDate>Tue, 10 Jun 2025 02:02:39 GMT</pubDate><guid isPermaLink="false">weather-20250610020239</guid></item></channel></rss>
